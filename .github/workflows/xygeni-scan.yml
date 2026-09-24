@@ -1,0 +1,19 @@
+name: Xygeni Security Scan
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  xygeni-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Xygeni Scanner
+        uses: xygeni/xygeni-action@v6.4.0   # Se recomienda usar versiones estables fijas
+        with:
+          token: ${{ secrets.XYGENI_TOKEN }}
